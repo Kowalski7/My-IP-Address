@@ -36,6 +36,10 @@ Partial Class MainWindow
         Me.AdapterName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.IPv4Address = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.IPv6Address = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.CopyLocalContextMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CopyNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CopyIPv4ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CopyIPv6ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PublicAddressProviderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -55,14 +59,10 @@ Partial Class MainWindow
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CountryTooltip = New System.Windows.Forms.ToolTip(Me.components)
         Me.PublicFlag = New System.Windows.Forms.PictureBox()
-        Me.CopyLocalContextMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.CopyNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CopyIPv4ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CopyIPv6ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopyContextMenu.SuspendLayout()
+        Me.CopyLocalContextMenu.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.PublicFlag, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.CopyLocalContextMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -164,6 +164,30 @@ Partial Class MainWindow
         Me.IPv6Address.Text = "IPv6"
         Me.IPv6Address.Width = 286
         '
+        'CopyLocalContextMenu
+        '
+        Me.CopyLocalContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyNameToolStripMenuItem, Me.CopyIPv4ToolStripMenuItem, Me.CopyIPv6ToolStripMenuItem})
+        Me.CopyLocalContextMenu.Name = "CopyLocalContextMenu"
+        Me.CopyLocalContextMenu.Size = New System.Drawing.Size(136, 70)
+        '
+        'CopyNameToolStripMenuItem
+        '
+        Me.CopyNameToolStripMenuItem.Name = "CopyNameToolStripMenuItem"
+        Me.CopyNameToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
+        Me.CopyNameToolStripMenuItem.Text = "Copy name"
+        '
+        'CopyIPv4ToolStripMenuItem
+        '
+        Me.CopyIPv4ToolStripMenuItem.Name = "CopyIPv4ToolStripMenuItem"
+        Me.CopyIPv4ToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
+        Me.CopyIPv4ToolStripMenuItem.Text = "Copy IPv4"
+        '
+        'CopyIPv6ToolStripMenuItem
+        '
+        Me.CopyIPv6ToolStripMenuItem.Name = "CopyIPv6ToolStripMenuItem"
+        Me.CopyIPv6ToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
+        Me.CopyIPv6ToolStripMenuItem.Text = "Copy IPv6"
+        '
         'MenuStrip1
         '
         Me.MenuStrip1.BackColor = System.Drawing.Color.WhiteSmoke
@@ -232,24 +256,24 @@ Partial Class MainWindow
         'AllAddressesToolStripMenuItem
         '
         Me.AllAddressesToolStripMenuItem.Name = "AllAddressesToolStripMenuItem"
-        Me.AllAddressesToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.AllAddressesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AllAddressesToolStripMenuItem.Text = "All addresses"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(147, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(177, 6)
         '
         'PublicAddressToolStripMenuItem
         '
         Me.PublicAddressToolStripMenuItem.Name = "PublicAddressToolStripMenuItem"
-        Me.PublicAddressToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.PublicAddressToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.PublicAddressToolStripMenuItem.Text = "Public address"
         '
         'LocalAddressToolStripMenuItem
         '
         Me.LocalAddressToolStripMenuItem.Name = "LocalAddressToolStripMenuItem"
-        Me.LocalAddressToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.LocalAddressToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.LocalAddressToolStripMenuItem.Text = "Local address"
         '
         'HelpToolStripMenuItem
@@ -263,20 +287,19 @@ Partial Class MainWindow
         '
         Me.CheckForUpdatesToolStripMenuItem.Enabled = False
         Me.CheckForUpdatesToolStripMenuItem.Name = "CheckForUpdatesToolStripMenuItem"
-        Me.CheckForUpdatesToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.CheckForUpdatesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.CheckForUpdatesToolStripMenuItem.Text = "Check for updates"
         '
         'ViewOnGitHubToolStripMenuItem
         '
-        Me.ViewOnGitHubToolStripMenuItem.Enabled = False
         Me.ViewOnGitHubToolStripMenuItem.Name = "ViewOnGitHubToolStripMenuItem"
-        Me.ViewOnGitHubToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.ViewOnGitHubToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ViewOnGitHubToolStripMenuItem.Text = "View on GitHub"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'CountryTooltip
@@ -294,30 +317,6 @@ Partial Class MainWindow
         Me.PublicFlag.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PublicFlag.TabIndex = 7
         Me.PublicFlag.TabStop = False
-        '
-        'CopyLocalContextMenu
-        '
-        Me.CopyLocalContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyNameToolStripMenuItem, Me.CopyIPv4ToolStripMenuItem, Me.CopyIPv6ToolStripMenuItem})
-        Me.CopyLocalContextMenu.Name = "CopyLocalContextMenu"
-        Me.CopyLocalContextMenu.Size = New System.Drawing.Size(181, 92)
-        '
-        'CopyNameToolStripMenuItem
-        '
-        Me.CopyNameToolStripMenuItem.Name = "CopyNameToolStripMenuItem"
-        Me.CopyNameToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.CopyNameToolStripMenuItem.Text = "Copy name"
-        '
-        'CopyIPv4ToolStripMenuItem
-        '
-        Me.CopyIPv4ToolStripMenuItem.Name = "CopyIPv4ToolStripMenuItem"
-        Me.CopyIPv4ToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.CopyIPv4ToolStripMenuItem.Text = "Copy IPv4"
-        '
-        'CopyIPv6ToolStripMenuItem
-        '
-        Me.CopyIPv6ToolStripMenuItem.Name = "CopyIPv6ToolStripMenuItem"
-        Me.CopyIPv6ToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.CopyIPv6ToolStripMenuItem.Text = "Copy IPv6"
         '
         'MainWindow
         '
@@ -337,10 +336,10 @@ Partial Class MainWindow
         Me.Name = "MainWindow"
         Me.Text = "My IP Address"
         Me.CopyContextMenu.ResumeLayout(False)
+        Me.CopyLocalContextMenu.ResumeLayout(False)
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         CType(Me.PublicFlag, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.CopyLocalContextMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

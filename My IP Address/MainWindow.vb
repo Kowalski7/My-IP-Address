@@ -98,6 +98,10 @@ Public Class MainWindow
         PublicAddressProvider = New PublicAddressProviderIPIFY
     End Sub
 
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        Close()
+    End Sub
+
     ' Sub: Refresh
     Private Sub AllAddressesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AllAddressesToolStripMenuItem.Click
         sender.Enabled = False

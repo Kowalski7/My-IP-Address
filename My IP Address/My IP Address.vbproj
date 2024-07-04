@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4E6D533B-6AC8-4DB1-85D5-097A5C7473F3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>My_IP_Address.My.MyApplication</StartupObject>
+    <RootNamespace>My_IP_Address</RootNamespace>
+    <AssemblyName>My IP Address</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>My IP Address.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>My IP Address.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LocalAddressFetcher.vb" />
+    <Compile Include="MainWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWindow.Designer.vb">
+      <DependentUpon>MainWindow.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="PublicAddressProviderInterface.vb" />
+    <Compile Include="PublicAddressProviderIPAPI.vb" />
+    <Compile Include="PublicAddressProviderIPIFY.vb" />
+    <Compile Include="PublicAddressProviderIPInfo.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
+    <None Include="Resources\flag_UNKNOWN.png" />
+    <None Include="Resources\flag_TF.png" />
+    <None Include="Resources\flag_TD.png" />
+    <None Include="Resources\flag_TC.png" />
+    <None Include="Resources\flag_SZ.png" />
+    <None Include="Resources\flag_SY.png" />
+    <None Include="Resources\flag_SX.png" />
+    <None Include="Resources\flag_SV.png" />
+    <None Include="Resources\flag_ST.png" />
+    <None Include="Resources\flag_SS.png" />
+    <None Include="Resources\flag_SR.png" />
+    <None Include="Resources\flag_SO.png" />
+    <None Include="Resources\flag_SN.png" />
+    <None Include="Resources\flag_SM.png" />
+    <None Include="Resources\flag_SL.png" />
+    <None Include="Resources\flag_SK.png" />
+    <None Include="Resources\flag_SJ.png" />
+    <None Include="Resources\flag_SI.png" />
+    <None Include="Resources\flag_SH.png" />
+    <None Include="Resources\flag_SG.png" />
+    <None Include="Resources\flag_SE.png" />
+    <None Include="Resources\flag_SD.png" />
+    <None Include="Resources\flag_SC.png" />
+    <None Include="Resources\flag_SB.png" />
+    <None Include="Resources\flag_SA.png" />
+    <None Include="Resources\flag_RW.png" />
+    <None Include="Resources\flag_RU.png" />
+    <None Include="Resources\flag_RS.png" />
+    <None Include="Resources\flag_RO.png" />
+    <None Include="Resources\flag_RE.png" />
+    <None Include="Resources\flag_QA.png" />
+    <None Include="Resources\flag_PY.png" />
+    <None Include="Resources\flag_PW.png" />
+    <None Include="Resources\flag_PT.png" />
+    <None Include="Resources\flag_PS.png" />
+    <None Include="Resources\flag_PR.png" />
+    <None Include="Resources\flag_PN.png" />
+    <None Include="Resources\flag_PM.png" />
+    <None Include="Resources\flag_PL.png" />
+    <None Include="Resources\flag_PK.png" />
+    <None Include="Resources\flag_PH.png" />
+    <None Include="Resources\flag_PG.png" />
+    <None Include="Resources\flag_PF.png" />
+    <None Include="Resources\flag_PE.png" />
+    <None Include="Resources\flag_PA.png" />
+    <None Include="Resources\flag_OM.png" />
+    <None Include="Resources\flag_NZ.png" />
+    <None Include="Resources\flag_NU.png" />
+    <None Include="Resources\flag_NR.png" />
+    <None Include="Resources\flag_NP.png" />
+    <None Include="Resources\flag_NO.png" />
+    <None Include="Resources\flag_NL.png" />
+    <None Include="Resources\flag_NI.png" />
+    <None Include="Resources\flag_NG.png" />
+    <None Include="Resources\flag_NF.png" />
+    <None Include="Resources\flag_NE.png" />
+    <None Include="Resources\flag_NC.png" />
+    <None Include="Resources\flag_NA.png" />
+    <None Include="Resources\flag_MZ.png" />
+    <None Include="Resources\flag_MY.png" />
+    <None Include="Resources\flag_MX.png" />
+    <None Include="Resources\flag_MW.png" />
+    <None Include="Resources\flag_MV.png" />
+    <None Include="Resources\flag_MU.png" />
+    <None Include="Resources\flag_MT.png" />
+    <None Include="Resources\flag_MS.png" />
+    <None Include="Resources\flag_MR.png" />
+    <None Include="Resources\flag_MQ.png" />
+    <None Include="Resources\flag_MP.png" />
+    <None Include="Resources\flag_MO.png" />
+    <None Include="Resources\flag_MN.png" />
+    <None Include="Resources\flag_MM.png" />
+    <None Include="Resources\flag_ML.png" />
+    <None Include="Resources\flag_MK.png" />
+    <None Include="Resources\flag_MH.png" />
+    <None Include="Resources\flag_MG.png" />
+    <None Include="Resources\flag_MF.png" />
+    <None Include="Resources\flag_ME.png" />
+    <None Include="Resources\flag_MD.png" />
+    <None Include="Resources\flag_MC.png" />
+    <None Include="Resources\flag_MA.png" />
+    <None Include="Resources\flag_LY.png" />
+    <None Include="Resources\flag_LV.png" />
+    <None Include="Resources\flag_LU.png" />
+    <None Include="Resources\flag_LT.png" />
+    <None Include="Resources\flag_LS.png" />
+    <None Include="Resources\flag_LR.png" />
+    <None Include="Resources\flag_LK.png" />
+    <None Include="Resources\flag_LI.png" />
+    <None Include="Resources\flag_LC.png" />
+    <None Include="Resources\flag_LB.png" />
+    <None Include="Resources\flag_LA.png" />
+    <None Include="Resources\flag_KZ.png" />
+    <None Include="Resources\flag_KY.png" />
+    <None Include="Resources\flag_KW.png" />
+    <None Include="Resources\flag_KR.png" />
+    <None Include="Resources\flag_KP.png" />
+    <None Include="Resources\flag_KN.png" />
+    <None Include="Resources\flag_KM.png" />
+    <None Include="Resources\flag_KI.png" />
+    <None Include="Resources\flag_KH.png" />
+    <None Include="Resources\flag_KG.png" />
+    <None Include="Resources\flag_KE.png" />
+    <None Include="Resources\flag_JP.png" />
+    <None Include="Resources\flag_JO.png" />
+    <None Include="Resources\flag_JM.png" />
+    <None Include="Resources\flag_JE.png" />
+    <None Include="Resources\flag_IT.png" />
+    <None Include="Resources\flag_IS.png" />
+    <None Include="Resources\flag_IR.png" />
+    <None Include="Resources\flag_IQ.png" />
+    <None Include="Resources\flag_IO.png" />
+    <None Include="Resources\flag_IN.png" />
+    <None Include="Resources\flag_IM.png" />
+    <None Include="Resources\flag_IL.png" />
+    <None Include="Resources\flag_IE.png" />
+    <None Include="Resources\flag_ID.png" />
+    <None Include="Resources\flag_HU.png" />
+    <None Include="Resources\flag_HT.png" />
+    <None Include="Resources\flag_HR.png" />
+    <None Include="Resources\flag_HN.png" />
+    <None Include="Resources\flag_HM.png" />
+    <None Include="Resources\flag_HK.png" />
+    <None Include="Resources\flag_GY.png" />
+    <None Include="Resources\flag_GW.png" />
+    <None Include="Resources\flag_GU.png" />
+    <None Include="Resources\flag_GT.png" />
+    <None Include="Resources\flag_GS.png" />
+    <None Include="Resources\flag_GR.png" />
+    <None Include="Resources\flag_GQ.png" />
+    <None Include="Resources\flag_GP.png" />
+    <None Include="Resources\flag_GN.png" />
+    <None Include="Resources\flag_GM.png" />
+    <None Include="Resources\flag_GL.png" />
+    <None Include="Resources\flag_GI.png" />
+    <None Include="Resources\flag_GH.png" />
+    <None Include="Resources\flag_GG.png" />
+    <None Include="Resources\flag_GF.png" />
+    <None Include="Resources\flag_GE.png" />
+    <None Include="Resources\flag_GD.png" />
+    <None Include="Resources\flag_GB.png" />
+    <None Include="Resources\flag_GA.png" />
+    <None Include="Resources\flag_FR.png" />
+    <None Include="Resources\flag_FO.png" />
+    <None Include="Resources\flag_FM.png" />
+    <None Include="Resources\flag_FK.png" />
+    <None Include="Resources\flag_FJ.png" />
+    <None Include="Resources\flag_FI.png" />
+    <None Include="Resources\flag_ET.png" />
+    <None Include="Resources\flag_ES.png" />
+    <None Include="Resources\flag_ER.png" />
+    <None Include="Resources\flag_EH.png" />
+    <None Include="Resources\flag_EG.png" />
+    <None Include="Resources\flag_EE.png" />
+    <None Include="Resources\flag_EC.png" />
+    <None Include="Resources\flag_DZ.png" />
+    <None Include="Resources\flag_DO.png" />
+    <None Include="Resources\flag_DM.png" />
+    <None Include="Resources\flag_DK.png" />
+    <None Include="Resources\flag_DJ.png" />
+    <None Include="Resources\flag_DE.png" />
+    <None Include="Resources\flag_CZ.png" />
+    <None Include="Resources\flag_CY.png" />
+    <None Include="Resources\flag_CX.png" />
+    <None Include="Resources\flag_CW.png" />
+    <None Include="Resources\flag_CV.png" />
+    <None Include="Resources\flag_CU.png" />
+    <None Include="Resources\flag_CR.png" />
+    <None Include="Resources\flag_CO.png" />
+    <None Include="Resources\flag_CN.png" />
+    <None Include="Resources\flag_CM.png" />
+    <None Include="Resources\flag_CL.png" />
+    <None Include="Resources\flag_CK.png" />
+    <None Include="Resources\flag_CI.png" />
+    <None Include="Resources\flag_CH.png" />
+    <None Include="Resources\flag_CG.png" />
+    <None Include="Resources\flag_CF.png" />
+    <None Include="Resources\flag_CD.png" />
+    <None Include="Resources\flag_CC.png" />
+    <None Include="Resources\flag_CA.png" />
+    <None Include="Resources\flag_BZ.png" />
+    <None Include="Resources\flag_BY.png" />
+    <None Include="Resources\flag_BW.png" />
+    <None Include="Resources\flag_BV.png" />
+    <None Include="Resources\flag_BT.png" />
+    <None Include="Resources\flag_BS.png" />
+    <None Include="Resources\flag_BR.png" />
+    <None Include="Resources\flag_BQ.png" />
+    <None Include="Resources\flag_BO.png" />
+    <None Include="Resources\flag_BN.png" />
+    <None Include="Resources\flag_BM.png" />
+    <None Include="Resources\flag_BL.png" />
+    <None Include="Resources\flag_BJ.png" />
+    <None Include="Resources\flag_BI.png" />
+    <None Include="Resources\flag_BH.png" />
+    <None Include="Resources\flag_BG.png" />
+    <None Include="Resources\flag_BF.png" />
+    <None Include="Resources\flag_BE.png" />
+    <None Include="Resources\flag_BD.png" />
+    <None Include="Resources\flag_BB.png" />
+    <None Include="Resources\flag_BA.png" />
+    <None Include="Resources\flag_AZ.png" />
+    <None Include="Resources\flag_AX.png" />
+    <None Include="Resources\flag_AW.png" />
+    <None Include="Resources\flag_AU.png" />
+    <None Include="Resources\flag_AT.png" />
+    <None Include="Resources\flag_AS.png" />
+    <None Include="Resources\flag_AR.png" />
+    <None Include="Resources\flag_AQ.png" />
+    <None Include="Resources\flag_AO.png" />
+    <None Include="Resources\flag_AM.png" />
+    <None Include="Resources\flag_AL.png" />
+    <None Include="Resources\flag_AI.png" />
+    <None Include="Resources\flag_AG.png" />
+    <None Include="Resources\flag_AF.png" />
+    <None Include="Resources\flag_AE.png" />
+    <None Include="Resources\flag_AD.png" />
+    <None Include="Resources\flag_ZW.png" />
+    <None Include="Resources\flag_ZM.png" />
+    <None Include="Resources\flag_ZA.png" />
+    <None Include="Resources\flag_YT.png" />
+    <None Include="Resources\flag_YE.png" />
+    <None Include="Resources\flag_XK.png" />
+    <None Include="Resources\flag_WS.png" />
+    <None Include="Resources\flag_WF.png" />
+    <None Include="Resources\flag_VU.png" />
+    <None Include="Resources\flag_VN.png" />
+    <None Include="Resources\flag_VI.png" />
+    <None Include="Resources\flag_VG.png" />
+    <None Include="Resources\flag_VE.png" />
+    <None Include="Resources\flag_VC.png" />
+    <None Include="Resources\flag_VA.png" />
+    <None Include="Resources\flag_UZ.png" />
+    <None Include="Resources\flag_UY.png" />
+    <None Include="Resources\flag_US.png" />
+    <None Include="Resources\flag_UM.png" />
+    <None Include="Resources\flag_UG.png" />
+    <None Include="Resources\flag_UA.png" />
+    <None Include="Resources\flag_TZ.png" />
+    <None Include="Resources\flag_TW.png" />
+    <None Include="Resources\flag_TV.png" />
+    <None Include="Resources\flag_TT.png" />
+    <None Include="Resources\flag_TR.png" />
+    <None Include="Resources\flag_TO.png" />
+    <None Include="Resources\flag_TN.png" />
+    <None Include="Resources\flag_TM.png" />
+    <None Include="Resources\flag_TL.png" />
+    <None Include="Resources\flag_TK.png" />
+    <None Include="Resources\flag_TJ.png" />
+    <None Include="Resources\flag_TH.png" />
+    <None Include="Resources\flag_TG.png" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>

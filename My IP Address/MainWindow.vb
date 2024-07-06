@@ -1,26 +1,49 @@
 ﻿Imports System.ComponentModel
 Imports System.Net
-Imports System.Net.NetworkInformation
 
 Public Class MainWindow
-    Dim PublicIPString, AdapterNamesString, LocalIPv4String, LocalIPv6String As String
-    Dim heightIP As Integer
+    Private ReadOnly UpdateServer = ""
+    Private ReadOnly GitHubRepo = "https://github.com/Kowalski7/My-IP-Address"
+
     Dim PublicAddressProvider As PublicAddressProviderInterface
     Dim LocalAddressesProvider As LocalAddressFetcher
+    Dim AppSettings As SettingsManager
 
     ' INIT FUNCTION
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub MainWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-        PublicAddressProvider = New PublicAddressProviderIPAPI
-        LocalAddressesProvider = New LocalAddressFetcher
+        AppSettings = New SettingsManager(IO.Path.GetFileNameWithoutExtension(My.Application.Info.AssemblyName) & ".ini")
+        LocalAddressesProvider = New LocalAddressFetcher()
 
+        ' Load application settings
+        If AppSettings.GetSettingsValue("DarkMode") = "1" Then
+            DarkModeToolStripMenuItem.Checked = True
+        End If
+
+        Select Case AppSettings.GetSettingsValue("LastProvider")
+            Case "1"
+                IpinfoioToolStripMenuItem.Checked = True
+            Case "2"
+                IpifyToolStripMenuItem.CheckState = CheckState.Checked
+            Case Else
+                IpapiToolStripMenuItem.Checked = True
+        End Select
+
+        ' Fetch addresses
         PublicIPfetcher.RunWorkerAsync()
         LocalIPfetcher.RunWorkerAsync()
     End Sub
 
-    Private Sub UncheckAllProviders()
+    ' SHUTDOWN FUNCTION
+    Private Sub MainWindow_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        AppSettings.SaveConfig()
+    End Sub
+
+    Private Sub UncheckAllProviders(Optional exclude As ToolStripMenuItem = Nothing)
         For Each item As ToolStripMenuItem In PublicAddressProviderToolStripMenuItem.DropDownItems
-            item.Checked = False
+            If exclude IsNot item Then
+                item.Checked = False
+            End If
         Next
     End Sub
 
@@ -76,30 +99,42 @@ Public Class MainWindow
 
 
     ' TOOLBAR CONTROLS
-    ' Sub: File
-    Private Sub IpapiToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IpapiToolStripMenuItem.Click
-        UncheckAllProviders()
-        sender.checked = True
-
-        PublicAddressProvider = New PublicAddressProviderIPAPI
+    ' Sub: Settings
+    Private Sub DarkModeToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles DarkModeToolStripMenuItem.CheckedChanged
+        If sender.Checked Then
+            DarkMode.ApplyDarkMode(Me)
+            AppSettings.SetSettingsValue("DarkMode", "1")
+        Else
+            DarkMode.ApplyLightMode(Me)
+            AppSettings.SetSettingsValue("DarkMode", "0")
+        End If
     End Sub
 
-    Private Sub IpinfoioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IpinfoioToolStripMenuItem.Click
-        UncheckAllProviders()
-        sender.checked = True
+    Private Sub IpapiToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles IpapiToolStripMenuItem.CheckedChanged
+        If sender.Checked Then
+            UncheckAllProviders(sender)
 
-        PublicAddressProvider = New PublicAddressProviderIPInfo
+            AppSettings.SetSettingsValue("LastProvider", "0")
+            PublicAddressProvider = New PublicAddressProviderIPAPI
+        End If
     End Sub
 
-    Private Sub IpifyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IpifyToolStripMenuItem.Click
-        UncheckAllProviders()
-        sender.checked = True
+    Private Sub IpinfoioToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles IpinfoioToolStripMenuItem.CheckedChanged
+        If sender.Checked Then
+            UncheckAllProviders(sender)
 
-        PublicAddressProvider = New PublicAddressProviderIPIFY
+            AppSettings.SetSettingsValue("LastProvider", "1")
+            PublicAddressProvider = New PublicAddressProviderIPInfo
+        End If
     End Sub
 
-    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
-        Close()
+    Private Sub IpifyToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles IpifyToolStripMenuItem.CheckedChanged
+        If sender.Checked Then
+            UncheckAllProviders(sender)
+
+            AppSettings.SetSettingsValue("LastProvider", "2")
+            PublicAddressProvider = New PublicAddressProviderIPIFY
+        End If
     End Sub
 
     ' Sub: Refresh
@@ -136,7 +171,11 @@ Public Class MainWindow
 
     ' Sub: Help
     Private Sub ViewOnGitHubToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewOnGitHubToolStripMenuItem.Click
-        Process.Start("https://github.com/Kowalski7/My-IP-Address")
+        Process.Start(GitHubRepo)
+    End Sub
+
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        About.ShowDialog()
     End Sub
 
     ' BACKGROUND WORKERS

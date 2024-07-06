@@ -9,10 +9,10 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("My IP Address")>
-<Assembly: AssemblyDescription("A simple tool to get your local and public IP addresses.")>
+<Assembly: AssemblyDescription("A simple tool to view your local and public IP addresses.")>
 <Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("My IP Address")>
-<Assembly: AssemblyCopyright("Copyright © 2021 Kowalski7")>
+<Assembly: AssemblyCopyright("Copyright © 2024 Kowalski7")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("2.1")>
-<Assembly: AssemblyFileVersion("2.1")>
+<Assembly: AssemblyVersion("3.0.0")>
+<Assembly: AssemblyFileVersion("3.0.0")>

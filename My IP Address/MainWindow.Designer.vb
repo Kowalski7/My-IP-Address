@@ -41,18 +41,18 @@ Partial Class MainWindow
         Me.CopyIPv4ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopyIPv6ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PublicAddressProviderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.IpapiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.IpinfoioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.IpifyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RefreshToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AllAddressesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.PublicAddressToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LocalAddressToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DarkModeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.PublicAddressProviderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.IpapiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.IpinfoioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.IpifyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CheckForUpdatesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewOnGitHubToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -74,7 +74,7 @@ Partial Class MainWindow
         Me.Label1.Location = New System.Drawing.Point(12, 35)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(710, 23)
-        Me.Label1.TabIndex = 4
+        Me.Label1.TabIndex = 1
         Me.Label1.Text = "Your public IP address is"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -85,13 +85,14 @@ Partial Class MainWindow
         Me.Label2.Location = New System.Drawing.Point(13, 142)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(138, 23)
-        Me.Label2.TabIndex = 5
+        Me.Label2.TabIndex = 3
         Me.Label2.Text = "Local IP addresses:"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'CopyContextMenu
         '
         Me.CopyContextMenu.AutoSize = False
+        Me.CopyContextMenu.BackColor = System.Drawing.SystemColors.Control
         Me.CopyContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyToolStripMenuItem, Me.SelectAllToolStripMenuItem})
         Me.CopyContextMenu.Name = "CopyContextMenu"
         Me.CopyContextMenu.ShowImageMargin = False
@@ -113,7 +114,7 @@ Partial Class MainWindow
         '
         Me.PublicIP.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PublicIP.BackColor = System.Drawing.Color.White
+        Me.PublicIP.BackColor = System.Drawing.SystemColors.Window
         Me.PublicIP.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.PublicIP.ContextMenuStrip = Me.CopyContextMenu
         Me.PublicIP.Font = New System.Drawing.Font("Bahnschrift", 21.75!)
@@ -121,7 +122,7 @@ Partial Class MainWindow
         Me.PublicIP.Name = "PublicIP"
         Me.PublicIP.ReadOnly = True
         Me.PublicIP.Size = New System.Drawing.Size(710, 35)
-        Me.PublicIP.TabIndex = 4
+        Me.PublicIP.TabIndex = 2
         Me.PublicIP.Text = "Loading..."
         Me.PublicIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -136,6 +137,7 @@ Partial Class MainWindow
         Me.AdaptersListView.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.AdaptersListView.BackColor = System.Drawing.SystemColors.Window
         Me.AdaptersListView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.AdaptersListView.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.AdapterName, Me.IPv4Address, Me.IPv6Address})
         Me.AdaptersListView.ContextMenuStrip = Me.CopyLocalContextMenu
@@ -145,7 +147,7 @@ Partial Class MainWindow
         Me.AdaptersListView.MultiSelect = False
         Me.AdaptersListView.Name = "AdaptersListView"
         Me.AdaptersListView.Size = New System.Drawing.Size(704, 166)
-        Me.AdaptersListView.TabIndex = 6
+        Me.AdaptersListView.TabIndex = 4
         Me.AdaptersListView.UseCompatibleStateImageBehavior = False
         Me.AdaptersListView.View = System.Windows.Forms.View.Details
         '
@@ -166,6 +168,7 @@ Partial Class MainWindow
         '
         'CopyLocalContextMenu
         '
+        Me.CopyLocalContextMenu.BackColor = System.Drawing.SystemColors.Control
         Me.CopyLocalContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyNameToolStripMenuItem, Me.CopyIPv4ToolStripMenuItem, Me.CopyIPv6ToolStripMenuItem})
         Me.CopyLocalContextMenu.Name = "CopyLocalContextMenu"
         Me.CopyLocalContextMenu.Size = New System.Drawing.Size(136, 70)
@@ -191,115 +194,125 @@ Partial Class MainWindow
         'MenuStrip1
         '
         Me.MenuStrip1.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.RefreshToolStripMenuItem, Me.HelpToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RefreshToolStripMenuItem, Me.FileToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(734, 24)
-        Me.MenuStrip1.TabIndex = 8
+        Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
-        '
-        'FileToolStripMenuItem
-        '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PublicAddressProviderToolStripMenuItem, Me.ToolStripSeparator2, Me.ExitToolStripMenuItem})
-        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
-        Me.FileToolStripMenuItem.Text = "File"
-        '
-        'PublicAddressProviderToolStripMenuItem
-        '
-        Me.PublicAddressProviderToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IpapiToolStripMenuItem, Me.IpinfoioToolStripMenuItem, Me.IpifyToolStripMenuItem})
-        Me.PublicAddressProviderToolStripMenuItem.Name = "PublicAddressProviderToolStripMenuItem"
-        Me.PublicAddressProviderToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
-        Me.PublicAddressProviderToolStripMenuItem.Text = "Public address provider"
-        '
-        'IpapiToolStripMenuItem
-        '
-        Me.IpapiToolStripMenuItem.Checked = True
-        Me.IpapiToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.IpapiToolStripMenuItem.Name = "IpapiToolStripMenuItem"
-        Me.IpapiToolStripMenuItem.Size = New System.Drawing.Size(118, 22)
-        Me.IpapiToolStripMenuItem.Tag = "1"
-        Me.IpapiToolStripMenuItem.Text = "ip-api"
-        '
-        'IpinfoioToolStripMenuItem
-        '
-        Me.IpinfoioToolStripMenuItem.Name = "IpinfoioToolStripMenuItem"
-        Me.IpinfoioToolStripMenuItem.Size = New System.Drawing.Size(118, 22)
-        Me.IpinfoioToolStripMenuItem.Tag = "2"
-        Me.IpinfoioToolStripMenuItem.Text = "ipinfo.io"
-        '
-        'IpifyToolStripMenuItem
-        '
-        Me.IpifyToolStripMenuItem.Name = "IpifyToolStripMenuItem"
-        Me.IpifyToolStripMenuItem.Size = New System.Drawing.Size(118, 22)
-        Me.IpifyToolStripMenuItem.Tag = "3"
-        Me.IpifyToolStripMenuItem.Text = "ipify"
-        '
-        'ToolStripSeparator2
-        '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(194, 6)
-        '
-        'ExitToolStripMenuItem
-        '
-        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
-        Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'RefreshToolStripMenuItem
         '
         Me.RefreshToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AllAddressesToolStripMenuItem, Me.ToolStripSeparator1, Me.PublicAddressToolStripMenuItem, Me.LocalAddressToolStripMenuItem})
         Me.RefreshToolStripMenuItem.Name = "RefreshToolStripMenuItem"
         Me.RefreshToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
-        Me.RefreshToolStripMenuItem.Text = "Refresh"
+        Me.RefreshToolStripMenuItem.Text = "&Refresh"
         '
         'AllAddressesToolStripMenuItem
         '
+        Me.AllAddressesToolStripMenuItem.Image = Global.My_IP_Address.My.Resources.Resources.option_refresh
         Me.AllAddressesToolStripMenuItem.Name = "AllAddressesToolStripMenuItem"
-        Me.AllAddressesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AllAddressesToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
         Me.AllAddressesToolStripMenuItem.Text = "All addresses"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(147, 6)
         '
         'PublicAddressToolStripMenuItem
         '
+        Me.PublicAddressToolStripMenuItem.Image = Global.My_IP_Address.My.Resources.Resources.option_wan
         Me.PublicAddressToolStripMenuItem.Name = "PublicAddressToolStripMenuItem"
-        Me.PublicAddressToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.PublicAddressToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
         Me.PublicAddressToolStripMenuItem.Text = "Public address"
         '
         'LocalAddressToolStripMenuItem
         '
+        Me.LocalAddressToolStripMenuItem.Image = Global.My_IP_Address.My.Resources.Resources.option_lan
         Me.LocalAddressToolStripMenuItem.Name = "LocalAddressToolStripMenuItem"
-        Me.LocalAddressToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.LocalAddressToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
         Me.LocalAddressToolStripMenuItem.Text = "Local address"
+        '
+        'FileToolStripMenuItem
+        '
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DarkModeToolStripMenuItem, Me.ToolStripSeparator2, Me.PublicAddressProviderToolStripMenuItem})
+        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
+        Me.FileToolStripMenuItem.Text = "&Settings"
+        '
+        'DarkModeToolStripMenuItem
+        '
+        Me.DarkModeToolStripMenuItem.CheckOnClick = True
+        Me.DarkModeToolStripMenuItem.Image = Global.My_IP_Address.My.Resources.Resources.option_moon
+        Me.DarkModeToolStripMenuItem.Name = "DarkModeToolStripMenuItem"
+        Me.DarkModeToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.DarkModeToolStripMenuItem.Text = "Dark mode"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(194, 6)
+        '
+        'PublicAddressProviderToolStripMenuItem
+        '
+        Me.PublicAddressProviderToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IpapiToolStripMenuItem, Me.IpinfoioToolStripMenuItem, Me.IpifyToolStripMenuItem})
+        Me.PublicAddressProviderToolStripMenuItem.Image = Global.My_IP_Address.My.Resources.Resources.option_server
+        Me.PublicAddressProviderToolStripMenuItem.Name = "PublicAddressProviderToolStripMenuItem"
+        Me.PublicAddressProviderToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.PublicAddressProviderToolStripMenuItem.Text = "Public address provider"
+        '
+        'IpapiToolStripMenuItem
+        '
+        Me.IpapiToolStripMenuItem.CheckOnClick = True
+        Me.IpapiToolStripMenuItem.Name = "IpapiToolStripMenuItem"
+        Me.IpapiToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.IpapiToolStripMenuItem.Tag = "1"
+        Me.IpapiToolStripMenuItem.Text = "ip-api"
+        '
+        'IpinfoioToolStripMenuItem
+        '
+        Me.IpinfoioToolStripMenuItem.CheckOnClick = True
+        Me.IpinfoioToolStripMenuItem.Name = "IpinfoioToolStripMenuItem"
+        Me.IpinfoioToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.IpinfoioToolStripMenuItem.Tag = "1"
+        Me.IpinfoioToolStripMenuItem.Text = "ipinfo.io"
+        '
+        'IpifyToolStripMenuItem
+        '
+        Me.IpifyToolStripMenuItem.CheckOnClick = True
+        Me.IpifyToolStripMenuItem.Name = "IpifyToolStripMenuItem"
+        Me.IpifyToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.IpifyToolStripMenuItem.Tag = "1"
+        Me.IpifyToolStripMenuItem.Text = "ipify"
         '
         'HelpToolStripMenuItem
         '
         Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CheckForUpdatesToolStripMenuItem, Me.ViewOnGitHubToolStripMenuItem, Me.AboutToolStripMenuItem})
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
-        Me.HelpToolStripMenuItem.Text = "Help"
+        Me.HelpToolStripMenuItem.Text = "&Help"
         '
         'CheckForUpdatesToolStripMenuItem
         '
         Me.CheckForUpdatesToolStripMenuItem.Enabled = False
+        Me.CheckForUpdatesToolStripMenuItem.Image = Global.My_IP_Address.My.Resources.Resources.option_update
         Me.CheckForUpdatesToolStripMenuItem.Name = "CheckForUpdatesToolStripMenuItem"
-        Me.CheckForUpdatesToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CheckForUpdatesToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.CheckForUpdatesToolStripMenuItem.Text = "Check for updates"
         '
         'ViewOnGitHubToolStripMenuItem
         '
+        Me.ViewOnGitHubToolStripMenuItem.Image = Global.My_IP_Address.My.Resources.Resources.option_github
         Me.ViewOnGitHubToolStripMenuItem.Name = "ViewOnGitHubToolStripMenuItem"
-        Me.ViewOnGitHubToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewOnGitHubToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.ViewOnGitHubToolStripMenuItem.Text = "View on GitHub"
         '
         'AboutToolStripMenuItem
         '
+        Me.AboutToolStripMenuItem.Image = Global.My_IP_Address.My.Resources.Resources.option_info
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'CountryTooltip
@@ -365,7 +378,6 @@ Partial Class MainWindow
     Friend WithEvents CheckForUpdatesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ViewOnGitHubToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AllAddressesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents PublicAddressToolStripMenuItem As ToolStripMenuItem
@@ -380,4 +392,5 @@ Partial Class MainWindow
     Friend WithEvents CopyNameToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CopyIPv4ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CopyIPv6ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DarkModeToolStripMenuItem As ToolStripMenuItem
 End Class

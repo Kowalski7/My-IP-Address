@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.Net
+Imports Newtonsoft.Json.Linq
 
 Public Class MainWindow
     Private ReadOnly UpdateServer = ""
@@ -12,19 +13,19 @@ Public Class MainWindow
     ' INIT FUNCTION
     Private Sub MainWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-        AppSettings = New SettingsManager(IO.Path.GetFileNameWithoutExtension(My.Application.Info.AssemblyName) & ".ini")
+        AppSettings = New SettingsManager(IO.Path.GetFileNameWithoutExtension(My.Application.Info.AssemblyName) & ".json")
         LocalAddressesProvider = New LocalAddressFetcher()
 
         ' Load application settings
-        If AppSettings.GetSettingsValue("DarkMode") = "1" Then
+        If AppSettings.GetSettingsValue("DarkMode") Then
             DarkModeToolStripMenuItem.Checked = True
         End If
 
-        Select Case AppSettings.GetSettingsValue("LastProvider")
-            Case "1"
+        Select Case AppSettings.GetSettingsValue("LastProvider").Value(Of Integer)()
+            Case 1
                 IpinfoioToolStripMenuItem.Checked = True
-            Case "2"
-                IpifyToolStripMenuItem.CheckState = CheckState.Checked
+            Case 2
+                IpifyToolStripMenuItem.Checked = True
             Case Else
                 IpapiToolStripMenuItem.Checked = True
         End Select
@@ -36,7 +37,14 @@ Public Class MainWindow
 
     ' SHUTDOWN FUNCTION
     Private Sub MainWindow_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        AppSettings.SaveConfig()
+        Try
+            AppSettings.SaveConfig()
+        Catch ex As Exception
+            Dim confirm = MsgBox("Failed to save settings file! Exit anyways?" & vbNewLine & vbNewLine & "Error details: " & vbNewLine & ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.OkCancel, "Error")
+            If confirm = vbCancel Then
+                e.Cancel = True
+            End If
+        End Try
     End Sub
 
     Private Sub UncheckAllProviders(Optional exclude As ToolStripMenuItem = Nothing)
@@ -103,10 +111,10 @@ Public Class MainWindow
     Private Sub DarkModeToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles DarkModeToolStripMenuItem.CheckedChanged
         If sender.Checked Then
             DarkMode.ApplyDarkMode(Me)
-            AppSettings.SetSettingsValue("DarkMode", "1")
+            AppSettings.SetSettingsValue("DarkMode", True)
         Else
             DarkMode.ApplyLightMode(Me)
-            AppSettings.SetSettingsValue("DarkMode", "0")
+            AppSettings.SetSettingsValue("DarkMode", False)
         End If
     End Sub
 
@@ -114,7 +122,7 @@ Public Class MainWindow
         If sender.Checked Then
             UncheckAllProviders(sender)
 
-            AppSettings.SetSettingsValue("LastProvider", "0")
+            AppSettings.SetSettingsValue("LastProvider", 0)
             PublicAddressProvider = New PublicAddressProviderIPAPI
         End If
     End Sub
@@ -123,7 +131,7 @@ Public Class MainWindow
         If sender.Checked Then
             UncheckAllProviders(sender)
 
-            AppSettings.SetSettingsValue("LastProvider", "1")
+            AppSettings.SetSettingsValue("LastProvider", 1)
             PublicAddressProvider = New PublicAddressProviderIPInfo
         End If
     End Sub
@@ -132,7 +140,7 @@ Public Class MainWindow
         If sender.Checked Then
             UncheckAllProviders(sender)
 
-            AppSettings.SetSettingsValue("LastProvider", "2")
+            AppSettings.SetSettingsValue("LastProvider", 2)
             PublicAddressProvider = New PublicAddressProviderIPIFY
         End If
     End Sub

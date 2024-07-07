@@ -1,33 +1,47 @@
-﻿Imports MadMilkman.Ini
+﻿Imports System.IO
+Imports Newtonsoft.Json.Linq
 
 Public Class SettingsManager
-    Private iniPath As String
-    Private iniFile As IniFile
-    Private settingsSection As IniSection
+    Private jsonPath As String
+    Private settingsObject As JObject
+    Private settingsModified As Boolean = False
 
-    Public Sub New(IniPath As String)
-        Me.iniPath = IniPath
-        iniFile = New IniFile()
+    Public Sub New(configPath As String)
+        Me.jsonPath = configPath
 
-        If IO.File.Exists(IniPath) Then
-            iniFile.Load(IniPath)
-            settingsSection = iniFile.Sections("Settings")
-        Else
-            settingsSection = iniFile.Sections.Add("Settings")
-            settingsSection.Keys.Add("DarkMode", "0")
-            settingsSection.Keys.Add("LastProvider", "0")
+        Try
+            settingsObject = JObject.Parse(File.ReadAllText(configPath))
+        Catch ex As Exception
+            Console.WriteLine("[ERROR] Failed loading settings file! Reason: " + ex.Message)
+            settingsObject = GenerateDefaultSettings()
+        End Try
+    End Sub
+
+    Private Function GenerateDefaultSettings() As JObject
+        Dim settings As New JObject(
+            New JProperty("DarkMode", False),
+            New JProperty("LastProvider", 0)
+        )
+
+        Return settings
+    End Function
+
+    Public Function GetSettingsValue(key As String) As JToken
+        Return settingsObject(key)
+    End Function
+
+    Public Sub SetSettingsValue(key As String, value As Object)
+        If value <> settingsObject(key) Then
+            settingsModified = True
+            settingsObject(key) = JToken.FromObject(value)
         End If
     End Sub
 
-    Public Function GetSettingsValue(key As String) As String
-        Return settingsSection.Keys(key).Value
-    End Function
-
-    Public Sub SetSettingsValue(key As String, value As String)
-        settingsSection.Keys(key).Value = value
-    End Sub
-
     Public Sub SaveConfig()
-        iniFile.Save(iniPath)
+        If settingsModified Then
+            File.WriteAllText(jsonPath, settingsObject.ToString())
+        Else
+            Console.WriteLine("[INFO] No changes to save.")
+        End If
     End Sub
 End Class

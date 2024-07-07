@@ -26,7 +26,7 @@ Public Class LocalAddressFetcher
         Return ValidAddresses
     End Function
 
-    Public Function FetchData() As Nullable
+    Public Sub FetchData()
         Dim NetworkInterfaces As NetworkInterface() = NetworkInterface.GetAllNetworkInterfaces()
         addresses = New Dictionary(Of String, List(Of List(Of String)))
 
@@ -48,7 +48,7 @@ Public Class LocalAddressFetcher
                 addresses.Add(netadapter.Name, New List(Of List(Of String)) From {IPv4Addresses, IPv6Addresses})
             End If
         Next
-    End Function
+    End Sub
 
     Public Function GetLocalAddresses() As Dictionary(Of String, List(Of List(Of String)))
         Return addresses

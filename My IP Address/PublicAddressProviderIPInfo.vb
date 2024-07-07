@@ -5,13 +5,15 @@ Imports System.Net
 Public Class PublicAddressProviderIPInfo
     Implements PublicAddressProviderInterface
 
-    Private ip As String
-    Private country As String
+    Private ip As String = "N/A"
+    Private country As String = "UNKNOWN"
 
-    Public Function FetchData() As Nullable Implements PublicAddressProviderInterface.FetchData
+    Public Sub FetchData() Implements PublicAddressProviderInterface.FetchData
         Try
             ' Fetch data
             Dim request As HttpWebRequest = HttpWebRequest.Create("https://ipinfo.io/json")
+            request.Timeout = 5000
+
             Dim response As HttpWebResponse = request.GetResponse()
 
             ' Read response
@@ -26,10 +28,9 @@ Public Class PublicAddressProviderIPInfo
             country = data("country")
         Catch
             ip = "N/A"
+            country = "N/A"
         End Try
-
-        Return Nothing
-    End Function
+    End Sub
 
     Public Function GetPublicAddress() As String Implements PublicAddressProviderInterface.GetPublicAddress
         Return ip

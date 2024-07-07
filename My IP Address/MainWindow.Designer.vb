@@ -212,27 +212,27 @@ Partial Class MainWindow
         '
         Me.AllAddressesToolStripMenuItem.Image = Global.My_IP_Address.My.Resources.Resources.option_refresh
         Me.AllAddressesToolStripMenuItem.Name = "AllAddressesToolStripMenuItem"
-        Me.AllAddressesToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.AllAddressesToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
         Me.AllAddressesToolStripMenuItem.Text = "All addresses"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(147, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(153, 6)
         '
         'PublicAddressToolStripMenuItem
         '
         Me.PublicAddressToolStripMenuItem.Image = Global.My_IP_Address.My.Resources.Resources.option_wan
         Me.PublicAddressToolStripMenuItem.Name = "PublicAddressToolStripMenuItem"
-        Me.PublicAddressToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
+        Me.PublicAddressToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
         Me.PublicAddressToolStripMenuItem.Text = "Public address"
         '
         'LocalAddressToolStripMenuItem
         '
         Me.LocalAddressToolStripMenuItem.Image = Global.My_IP_Address.My.Resources.Resources.option_lan
         Me.LocalAddressToolStripMenuItem.Name = "LocalAddressToolStripMenuItem"
-        Me.LocalAddressToolStripMenuItem.Size = New System.Drawing.Size(150, 22)
-        Me.LocalAddressToolStripMenuItem.Text = "Local address"
+        Me.LocalAddressToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
+        Me.LocalAddressToolStripMenuItem.Text = "Local addresses"
         '
         'FileToolStripMenuItem
         '
@@ -266,7 +266,7 @@ Partial Class MainWindow
         '
         Me.IpapiToolStripMenuItem.CheckOnClick = True
         Me.IpapiToolStripMenuItem.Name = "IpapiToolStripMenuItem"
-        Me.IpapiToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.IpapiToolStripMenuItem.Size = New System.Drawing.Size(118, 22)
         Me.IpapiToolStripMenuItem.Tag = "1"
         Me.IpapiToolStripMenuItem.Text = "ip-api"
         '
@@ -274,7 +274,7 @@ Partial Class MainWindow
         '
         Me.IpinfoioToolStripMenuItem.CheckOnClick = True
         Me.IpinfoioToolStripMenuItem.Name = "IpinfoioToolStripMenuItem"
-        Me.IpinfoioToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.IpinfoioToolStripMenuItem.Size = New System.Drawing.Size(118, 22)
         Me.IpinfoioToolStripMenuItem.Tag = "1"
         Me.IpinfoioToolStripMenuItem.Text = "ipinfo.io"
         '
@@ -282,7 +282,7 @@ Partial Class MainWindow
         '
         Me.IpifyToolStripMenuItem.CheckOnClick = True
         Me.IpifyToolStripMenuItem.Name = "IpifyToolStripMenuItem"
-        Me.IpifyToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.IpifyToolStripMenuItem.Size = New System.Drawing.Size(118, 22)
         Me.IpifyToolStripMenuItem.Tag = "1"
         Me.IpifyToolStripMenuItem.Text = "ipify"
         '

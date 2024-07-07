@@ -168,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\about.rtf" />
     <None Include="Resources\option_moon.png" />
     <None Include="Resources\option_night.png" />
     <None Include="Resources\option_server.png" />

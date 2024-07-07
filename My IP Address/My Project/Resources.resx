@@ -117,30 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutText" xml:space="preserve">
-    <value>{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Bahnschrift;}{\f1\fnil\fcharset2 Symbol;}}
-{\colortbl ;\red0\green0\blue255;}
-{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
-\pard\sl240\slmult1\f0\fs20\lang9 A simple tool to view your local and public IP addresses.\fs18\par
-\par
-
-\pard\sl240\slmult1\i\fs20 Credits:\i0\fs18\par
-
-\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\b App icon\b0 : EatosDesign @ {{\field{\*\fldinst{HYPERLINK https://www.deviantart.com/eatosdesign }}{\fldrslt{https://www.deviantart.com/eatosdesign\ul0\cf0}}}}\f0\fs18\par
-{\pntext\f1\'B7\tab}\b LAN icon\b0 : Freepik @ {{\field{\*\fldinst{HYPERLINK https://www.flaticon.com/authors/freepik }}{\fldrslt{https://www.flaticon.com/authors/freepik\ul0\cf0}}}}\f0\fs18\par
-{\pntext\f1\'B7\tab}\b Globe icon\b0 : Freepik @ {{\field{\*\fldinst{HYPERLINK https://www.flaticon.com/authors/freepik }}{\fldrslt{https://www.flaticon.com/authors/freepik\ul0\cf0}}}}\f0\fs18\par
-
-\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\b Moon icon\b0 : Freepik @ {{\field{\*\fldinst{HYPERLINK https://www.flaticon.com/authors/freepik }}{\fldrslt{https://www.flaticon.com/authors/freepik\ul0\cf0}}}}\f0\fs18\par
-
-\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1\b Refresh icon\b0 : Freepik @ {{\field{\*\fldinst{HYPERLINK https://www.flaticon.com/authors/freepik }}{\fldrslt{https://www.flaticon.com/authors/freepik\ul0\cf0}}}}\f0\fs18\par
-{\pntext\f1\'B7\tab}\b Server icon\b0 : Freepik @ {{\field{\*\fldinst{HYPERLINK https://www.flaticon.com/authors/freepik }}{\fldrslt{https://www.flaticon.com/authors/freepik\ul0\cf0}}}}\f0\fs18\par
-{\pntext\f1\'B7\tab}\b Update icon\b0 : Freepik @ {{\field{\*\fldinst{HYPERLINK https://www.flaticon.com/authors/freepik }}{\fldrslt{https://www.flaticon.com/authors/freepik\ul0\cf0}}}}\f0\fs18\par
-{\pntext\f1\'B7\tab}\b GitHub icon\b0 : Freepik @ {{\field{\*\fldinst{HYPERLINK https://www.flaticon.com/authors/freepik }}{\fldrslt{https://www.flaticon.com/authors/freepik\ul0\cf0}}}}\f0\fs18\par
-{\pntext\f1\'B7\tab}\b About icon\b0 : Freepik @ {{\field{\*\fldinst{HYPERLINK https://www.flaticon.com/authors/freepik }}{\fldrslt{https://www.flaticon.com/authors/freepik\ul0\cf0}}}}\f0\fs18\par
-}</value>
-    <comment>The RTF text for the about section of the app.</comment>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="AboutRTF" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\about.rtf;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
   <data name="app_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\app_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

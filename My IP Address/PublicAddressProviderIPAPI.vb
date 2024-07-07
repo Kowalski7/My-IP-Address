@@ -9,10 +9,12 @@ Public Class PublicAddressProviderIPAPI
     Private country As String
     Private countryCode As String
 
-    Public Function FetchData() As Nullable Implements PublicAddressProviderInterface.FetchData
+    Public Sub FetchData() Implements PublicAddressProviderInterface.FetchData
         Try
             ' Fetch data
             Dim request As HttpWebRequest = HttpWebRequest.Create("http://ip-api.com/json")
+            request.Timeout = 5000
+
             Dim response As HttpWebResponse = request.GetResponse()
 
             ' Read response
@@ -28,10 +30,10 @@ Public Class PublicAddressProviderIPAPI
             countryCode = data("countryCode")
         Catch
             ip = "N/A"
+            country = "N/A"
+            countryCode = "UNKNOWN"
         End Try
-
-        Return Nothing
-    End Function
+    End Sub
 
     Public Function GetPublicAddress() As String Implements PublicAddressProviderInterface.GetPublicAddress
         Return ip

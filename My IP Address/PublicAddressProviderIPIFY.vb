@@ -6,21 +6,22 @@ Public Class PublicAddressProviderIPIFY
 
     Private ip As String
 
-    Public Function FetchData() As Nullable Implements PublicAddressProviderInterface.FetchData
+    Public Sub FetchData() Implements PublicAddressProviderInterface.FetchData
         Try
             ' Fetch data
             Dim request As HttpWebRequest = WebRequest.Create("https://api.ipify.org/")
             request.Timeout = 5000
+
             Dim response As HttpWebResponse = request.GetResponse()
+
+            ' Read response
             Dim reader As New StreamReader(response.GetResponseStream())
             ip = reader.ReadLine()
             reader.Close()
         Catch
             ip = "N/A"
         End Try
-
-        Return Nothing
-    End Function
+    End Sub
 
     Public Function GetPublicAddress() As String Implements PublicAddressProviderInterface.GetPublicAddress
         Return ip

@@ -71,9 +71,9 @@ Namespace My.Resources
         '''
         '''\pard{\pntext\f1\&apos;B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\&apos;B7}}\fi-360\li720\sl240\slmult1\b App icon\b0 : EatosDesign @ {{\field{\*\ [rest of string was truncated]&quot;;.
         '''</summary>
-        Friend ReadOnly Property AboutText() As String
+        Friend ReadOnly Property AboutRTF() As String
             Get
-                Return ResourceManager.GetString("AboutText", resourceCulture)
+                Return ResourceManager.GetString("AboutRTF", resourceCulture)
             End Get
         End Property
         

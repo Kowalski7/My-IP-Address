@@ -27,8 +27,8 @@ Public Class LocalAddressFetcher
     End Function
 
     Public Sub FetchData()
-        Dim NetworkInterfaces As NetworkInterface() = NetworkInterface.GetAllNetworkInterfaces()
         addresses = New Dictionary(Of String, List(Of List(Of String)))
+        Dim NetworkInterfaces As NetworkInterface() = NetworkInterface.GetAllNetworkInterfaces()
 
         For Each netadapter In NetworkInterfaces
             Dim intproperties As IPInterfaceProperties = netadapter.GetIPProperties()
